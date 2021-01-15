@@ -9,21 +9,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Mensagem")
-public class MensagemServlet extends HttpServlet {
+
+@WebServlet("/HTML")
+public class HTMLServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out = null;
+		
 		try {
-			response.getWriter();
-			out.print("Mensagem enviada pelo servlet");
+			
+			out =response.getWriter();
+			
+			response.setContentType("text/html");
+			
+			out.print("<HTML>");
+			out.print("<HEAD");
+			out.print("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
+			
+			out.print("</HEAD>");
+			out.print("<BODY>");
+			
+			out.print("<H1>Titulo da pagina</H1>");
+			out.print("<STRONG>Este é um texto em negrito</STRONG>");
+			out.print("</BODY></HTML>");
+			
 		} finally {
-			if (out != null){		
+			if (out != null) {
 				out.close();
 			}
 		}
+		
 	}
 
 }
